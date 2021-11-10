@@ -79,9 +79,7 @@ Using a neural network for traning in the train.csv data, predict whether the ot
             \item In the dataset, we drop \textit{PassengerId}, \textit{Name}, and \textit{Ticket},
             Because they are unique by each passenger.
             We also drop \textit{Cabin} because total of dataset have \textbf{891} samples and \textit{Cabin} have \textbf{687} is \textbf{None}.
-            \begin{center}
-                \includegraphics[width=0.425\textwidth]{missing.png}   
-            \end{center}
+            \includegraphics[width=0.425\textwidth]{missing.png}   
             \item Normalize the data, we vectorize from discrete value to unique number value and use MinMaxScaler to normalize data.
             \[
                X_{new} = \frac{X - X_{min}}{X_{max} - X_{min}}
@@ -96,38 +94,74 @@ Using a neural network for traning in the train.csv data, predict whether the ot
     \item Build a Multilayer perceptron (MLP) neural network with the following hyperparameters:
         \begin{itemize}
             \item \textbf{Number of input layers} is \textbf{7} from the input shape of the dataset after processed.
-            \item \textbf{Number of hidden layers} is \textbf{3} and \textbf{number of neurons} in each layer is \textbf{8}.
-            \item \textbf{Number of output layers} is \textbf{1} for classification is survival or not.
+            \item \textbf{Number of hidden layers} is \textbf{3} and \textbf{number of neurons} in each layer is \textbf{8} and activation function is \textbf{ReLU}.
+            \item \textbf{Number of output layers} is \textbf{1} for classification is survival or not with \textbf{Sigmoid} activation function.
+            \begin{center}
+                \includegraphics[width=0.235\textwidth]{nn.png}
+            \end{center}
+            \item We use \textbf{Adam Optimization Algorithm} for update network weights iterative based on training data.
+            \begin{gather}
+                g_n \gets \nabla f(\theta_{n-1})
+                \\
+                m_n \gets \frac{\beta_1}{1-\beta_1^n}m_{n-1} + \frac{1-\beta_1}{1-\beta_1^n}g_n
+                \\
+                v_n \gets \frac{\beta_2}{1-\beta_2^n}v_{n-1} + \frac{1-\beta_2}{1-\beta_2^n}g_n \odot g_n
+                \\
+                \theta_{n} \gets \theta_{n-1} - \alpha \frac{m_n}{\sqrt{v_n} + \epsilon}
+            \end{gather}
+                with \(\alpha\) is \textbf{0.001}, \(\epsilon\) is \textbf{1e-07}, \(\beta_1\) and \(\beta_2\) are \textbf{0.9} and \textbf{0.999} respectively.
         \end{itemize}
-    \begin{center}
-        \includegraphics[width=0.425\textwidth,height=10cm]{nn.png}   
-    \end{center}
-    % \item Method,
-    % \item Method,
-    % \item Method,
-    \item Method,
+    \item This is a binary classification problem, so we use \textbf{binary cross-entropy} loss function.
+    \begin{gather}
+        -p(x).\log q(x) - (1-p(x)).log(1-q(x))
+    \end{gather}
+    with \(p(x)\) is target probability and \(q(x)\) is predicted probability.
 \end{itemize}
 %-------------------------------------------------------------------------------------
 % Experimental results and analysis
 %-------------------------------------------------------------------------------------
 \section{Experimental results and analysis}
-\label{sec:results_analysis}
-This section shows:
 \begin{itemize}
-    \item Dataset(s),
-    \item Experimental setup,
-    \item Evaluation methods,
-    \item Experimental results,
-    \item Analysis/discussion of the results.
+    \item The train dataset 
+        \\
+        \includegraphics[width=0.425\textwidth]{chart_sur_or_not.png}
+        as we can see, there are 'Not survived' more than 'Survived' by each category.
+        \\
+        \includegraphics[width=0.425\textwidth]{chart_unique.png}   
+    \item We training with \textbf{100} epochs and \textbf{batch size} is \textbf{16}.
+    \item There are the best accuracy, loss, F1 score, precision, and recall on train dataset and validation dataset after train 5 times.
+    \\
+    \includegraphics[width=0.425\textwidth]{accuracy.png}
+    \\
+    \includegraphics[width=0.425\textwidth]{loss.png}
+    \\
+    \includegraphics[width=0.425\textwidth]{f1.png}
+    \\
+    \includegraphics[width=0.425\textwidth]{precision.png}
+    \\
+    \includegraphics[width=0.425\textwidth]{recall.png}
+    \\
+    \item The results on test dataset.
+    \\\\
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Train times & 1     & \textbf{2}     & 3     & 4     & 5     \\ \hline
+        Accuracy    & 0.803 & \textbf{0.837} & 0.808 & 0.808 & 0.820 \\ \hline
+        Loss        & 0.448 & \textbf{0.440} & 0.445 & 0.442 & 0.454 \\ \hline
+        F1-score    & 0.732 & \textbf{0.778} & 0.740 & 0.730 & 0.754 \\ \hline
+        Precision   & 0.843 & \textbf{0.899} & 0.859 & 0.880 & 0.868 \\ \hline
+        Recall      & 0.662 & \textbf{0.694} & 0.655 & 0.637 & 0.673 \\ \hline
+    \end{tabular}
+    \\
+    \item Because Recall is low compared to Precision, it can be seen that the model is making the choice 'Not surviverd' over 'Surviverd'.
+    \item Loss is quite high at 0.44, because the sigmoid activation function is curved, it is difficult to separate clearly between 0 and 1.
 \end{itemize}
 
 %-------------------------------------------------------------------------------------
 % Discussions
 %-------------------------------------------------------------------------------------
 \section{Conclusion}
-\label{sec:conclu}
-This section concludes what has been done in this report. The advantages, disadvantage, and the future direction also are shown in this section.
-
+Using neural networks to solve the problem and achieve not bad results, but there will be machine learning algorithms that give higher accuracy. Therefore, it will be necessary to improve this neural network in different ways to give better results.
 %-------------------------------------------------------------------------------------
 % References
 %-------------------------------------------------------------------------------------

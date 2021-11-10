@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.23)  10 NOV 2021 01:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.8.23)  11 NOV 2021 02:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.tex
-(/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.tex
+**/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.tex
+(/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -41,7 +41,7 @@ Package babel Info: \l@australian = using hyphenrules for ukenglish
 (babel)             (\language21) on input line 105.
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
 (babel)             (\language21) on input line 108.
-)) (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/spconf.sty) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+)) (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/spconf.sty) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 
@@ -260,7 +260,7 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 42.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.aux)
+) (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
@@ -308,37 +308,116 @@ Underfull \vbox (badness 1430) has occurred while \output is active []
 <missing.png, id=1, 578.16pt x 289.08pt>
 File: missing.png Graphic file (type png)
 <use missing.png>
-Package pdftex.def Info: missing.png  used on input line 83.
+Package pdftex.def Info: missing.png  used on input line 82.
 (pdftex.def)             Requested size: 215.24663pt x 107.61957pt.
+
+Underfull \hbox (badness 1184) in paragraph at lines 79--83
+[]\OT1/ptm/m/n/10 In the dataset, we drop \OT1/ptm/m/it/10 Pas-sen-gerId\OT1/ptm/m/n/10 , \OT1/ptm/m/it/10 Name\OT1/ptm/m/n/10 , and
+ []
+
+
+Underfull \hbox (badness 1210) in paragraph at lines 79--83
+\OT1/ptm/m/it/10 Ticket\OT1/ptm/m/n/10 , Be-cause they are unique by each pas-sen-
+ []
+
+
+Underfull \hbox (badness 1152) in paragraph at lines 79--83
+\OT1/ptm/m/n/10 have \OT1/ptm/b/n/10 891 \OT1/ptm/m/n/10 sam-ples and \OT1/ptm/m/it/10 Cabin \OT1/ptm/m/n/10 have \OT1/ptm/b/n/10 687 \OT1/ptm/m/n/10 is \OT1/ptm/b/n/10 None\OT1/ptm/m/n/10 .
+ []
+
 <nn.png, id=3, 132.495pt x 185.2521pt>
 File: nn.png Graphic file (type png)
 <use nn.png>
-Package pdftex.def Info: nn.png  used on input line 103.
-(pdftex.def)             Requested size: 215.26135pt x 284.52873pt.
- [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+Package pdftex.def Info: nn.png  used on input line 100.
+(pdftex.def)             Requested size: 119.01817pt x 166.41158pt.
+[1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
- </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/missing.png>] (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.bbl)
+ </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/missing.png>]
+<chart_sur_or_not.png, id=19, 324.21124pt x 210.7875pt>
+File: chart_sur_or_not.png Graphic file (type png)
+<use chart_sur_or_not.png>
+Package pdftex.def Info: chart_sur_or_not.png  used on input line 127.
+(pdftex.def)             Requested size: 215.24663pt x 139.94678pt.
+<chart_unique.png, id=20, 324.21124pt x 210.7875pt>
+File: chart_unique.png Graphic file (type png)
+<use chart_unique.png>
+Package pdftex.def Info: chart_unique.png  used on input line 130.
+(pdftex.def)             Requested size: 215.24663pt x 139.94678pt.
+
+Underfull \hbox (badness 2913) in paragraph at lines 125--131
+[] \OT1/ptm/m/n/10 as
+ []
+
+<accuracy.png, id=21, 393.47pt x 279.0425pt>
+File: accuracy.png Graphic file (type png)
+<use accuracy.png>
+Package pdftex.def Info: accuracy.png  used on input line 134.
+(pdftex.def)             Requested size: 215.24663pt x 152.64781pt.
+<loss.png, id=22, 393.47pt x 279.0425pt>
+File: loss.png Graphic file (type png)
+<use loss.png>
+Package pdftex.def Info: loss.png  used on input line 136.
+(pdftex.def)             Requested size: 215.24663pt x 152.64781pt.
+<f1.png, id=23, 387.4475pt x 279.0425pt>
+File: f1.png Graphic file (type png)
+<use f1.png>
+Package pdftex.def Info: f1.png  used on input line 138.
+(pdftex.def)             Requested size: 215.24663pt x 155.0237pt.
+<precision.png, id=24, 387.4475pt x 279.0425pt>
+File: precision.png Graphic file (type png)
+<use precision.png>
+Package pdftex.def Info: precision.png  used on input line 140.
+(pdftex.def)             Requested size: 215.24663pt x 155.0237pt.
+<recall.png, id=25, 387.4475pt x 279.0425pt>
+File: recall.png Graphic file (type png)
+<use recall.png>
+Package pdftex.def Info: recall.png  used on input line 142.
+(pdftex.def)             Requested size: 215.24663pt x 155.0237pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--144
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2 </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/nn.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/chart_sur_or_not.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/chart_unique.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/accuracy.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/loss.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/f1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 144--156
+
+ []
+
+
+Overfull \hbox (2.08565pt too wide) in paragraph at lines 144--156
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--156
+
+ []
+
+(/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.bbl)
 - LAST -
-Extra skip:90.18901pt
-Left:284.52873pt/0.0pt
-Right:194.19983pt/0.1399pt
-Output:244.36427pt
- [2 </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/nn.png>] (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.aux) ) 
+Extra skip:30.03261pt
+Left:311.0474pt/0.0pt
+Right:280.89987pt/0.11491pt
+Output:311.97363pt
+ [3 </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/precision.png> </Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/recall.png>] (/Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.aux) ) 
 Here is how much of TeX's memory you used:
- 4381 strings out of 478994
- 67330 string characters out of 5858184
+ 4421 strings out of 478994
+ 68043 string characters out of 5858184
  559945 words of memory out of 5000000
- 21767 multiletter control sequences out of 15000+600000
+ 21800 multiletter control sequences out of 15000+600000
  417398 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,7n,89p,389b,391s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/LaTex/main.pdf (2 pages, 409559 bytes).
+ 86i,9n,89p,397b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /Volumes/MAC_SAMSUNG_DATA/STUDY/NeuralNetwork/Titanic/LaTex/main.pdf (3 pages, 506577 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
