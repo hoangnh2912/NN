@@ -1,17 +1,9 @@
 import numpy as np
 
-def softmax_crossentropy_with_logits(logits,reference_answers):
-    # Compute crossentropy from logits[batch,n_classes] and ids of correct answers
-    logits_for_answers = logits[np.arange(len(logits)),reference_answers]
-    
-    xentropy = - logits_for_answers + np.log(np.sum(np.exp(logits),axis=-1))
-    
-    return xentropy
-def grad_softmax_crossentropy_with_logits(logits,reference_answers):
-    # Compute crossentropy gradient from logits[batch,n_classes] and ids of correct answers
-    ones_for_answers = np.zeros_like(logits)
-    ones_for_answers[np.arange(len(logits)),reference_answers] = 1
-    
-    softmax = np.exp(logits) / np.exp(logits).sum(axis=-1,keepdims=True)
-    
-    return (- ones_for_answers + softmax) / logits.shape[0]
+
+def binary_crossentropy(y_true, y_pred):
+    '''
+    y_true: ground truth
+    y_pred: prediction
+    '''
+    return -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))

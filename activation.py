@@ -8,7 +8,7 @@ class Activation:
     def forward(self):
         pass
 
-    def backward(self, input, grad_output):
+    def backward(self, grad_output):
         pass
 
 
@@ -21,8 +21,12 @@ class ReLU(Activation):
         return self.output
 
     def backward(self, grad_output):
+        # print("ReLU")
+        # print('grad_output', grad_output.shape)
         grad_input = grad_output.copy()
-        grad_input[self.input < 0] = 0
+        grad_input[grad_input < 0] = 0
+        # print('grad_input', grad_input.shape)
+        # print("==========")
         return grad_input
 
 
@@ -34,5 +38,9 @@ class Sigmoid(Activation):
         return self.output
 
     def backward(self, grad_output):
+        # print("Sigmoid")
+        # print('grad_output', grad_output.shape)
         grad_input = grad_output * (1 - self.output) * self.output
+        # print('grad_input', grad_input.shape)
+        # print("==========")
         return grad_input

@@ -1,38 +1,65 @@
 import numpy as np
 from activation import ReLU, Sigmoid
+from optimizer import Optimizer
 
 
 class Layer:
     def __init__(self):
         pass
 
+    def forward(self, x):
+        pass
+
+    def backward(self, grads):
+        pass
+
+    def update(self, layer, optimizer, gradients):
+        pass
+
+
+class InputLayer(Layer):
+    def __init__(self, input_shape):
+        if type(input_shape) == int:
+            self.input_shape = (1, input_shape)
+        else:
+            self.input_shape = input_shape
+        self.output_shape = self.input_shape
+
+    def forward(self, x):
+        self.x = x
+        return x
+
+    def backward(self, x):
+        return x
+
 
 class Dense(Layer):
-    def __init__(self, units, activation='relu'):
+    def __init__(self, units, activation='relu', name=None):
+        self.name = name
         self.units = units
         if activation == 'relu':
             self.activation = ReLU()
         if activation == 'sigmoid':
             self.activation = Sigmoid()
+        self.output_shape = (1, units)
+
+    def set_input_shape(self, input_shape):
+        self.input_shape = input_shape
+        self.init_weights(input_shape)
 
     def forward(self, inputs):
         self.inputs = inputs
-        self.outputs = np.dot(inputs, self.weights) + self.bias
-        self.outputs = self.activation.forward(self.outputs)
+        self.outputs = self.activation.forward(
+            np.dot(inputs, self.weights) + self.bias)
         return self.outputs
 
     def backward(self, grads):
-        self.grads = grads
-        self.dweights = np.dot(self.inputs.T, grads)
-        self.dbias = np.sum(grads, axis=0)
-        self.dinputs = np.dot(grads, self.weights.T)
-        self.dinputs = self.activation.backward(self.dinputs)
-        return self.dinputs
+        grads = self.activation.backward(grads)
+        return np.dot(grads, self.weights.T)
 
-    def update(self, learning_rate):
-        self.weights -= learning_rate * self.dweights
-        self.bias -= learning_rate * self.dbias
+    def init_weights(self, input_shape):
+        self.weights = np.random.randn(input_shape[1], self.units)
+        self.bias = np.random.randn(1, self.units)
 
-    def init_weights(self, shape):
-        self.weights = np.random.randn(*shape) / np.sqrt(shape[0])
-        self.bias = np.zeros((1, shape[1]))
+    def update(self, layer, optimizer: Optimizer, gradients):
+        optimizer.update(layer, gradients)

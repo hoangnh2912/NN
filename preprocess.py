@@ -8,7 +8,6 @@ from sklearn.preprocessing import MinMaxScaler
 train = pd.read_csv('./data/train.csv')
 drop_columns = ['PassengerId', 'Name', 'Cabin', 'Ticket']
 # drop_columns = ['PassengerId','Name','Ticket']
-print('Train shape', train.shape)
 train.drop(columns=drop_columns, inplace=True)
 columns = train.columns
 list_nan = list(train.isna().sum())
