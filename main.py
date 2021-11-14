@@ -1,17 +1,18 @@
 import numpy as np
-from layer import Layer, Dense, ReLU, InputLayer
+from layer import Layer, Dense
 from preprocess import X_val, X_train, Y_train, Y_val
 from model import Sequential
 
+
+np.random.seed(0)
+
 network = Sequential()
-network.add(InputLayer(7))
-network.add(Dense(8, activation='relu', name='h_layer_1'))
-network.add(Dense(8, activation='relu', name='h_layer_2'))
-network.add(Dense(8, activation='relu', name='h_layer_3'))
+network.add(Dense(8, activation='relu', name='layer_1', input_shape=(1, 7)))
+network.add(Dense(8, activation='relu', name='layer_2'))
+network.add(Dense(8, activation='relu', name='layer_3'))
 network.add(Dense(1, activation='sigmoid', name='output_layer'))
 
-# out = network.predict(np.array([[1, 2, 3, 4, 5, 6, 7]]))
 
 network.compile(loss='binary_crossentropy', optimizer='adam')
-network.fit(X_train, Y_train, epochs=100, batch_size=16,
+network.fit(X_train, Y_train, epochs=100, batch_size=1,
             validation_data=(X_val, Y_val))

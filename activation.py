@@ -21,13 +21,9 @@ class ReLU(Activation):
         return self.output
 
     def backward(self, grad_output):
-        # print("ReLU")
-        # print('grad_output', grad_output.shape)
-        grad_input = grad_output.copy()
-        grad_input[grad_input < 0] = 0
-        # print('grad_input', grad_input.shape)
-        # print("==========")
-        return grad_input
+        relu_grad = grad_output.copy()
+        relu_grad[self.input > 0] = 0
+        return relu_grad
 
 
 class Sigmoid(Activation):
@@ -38,9 +34,5 @@ class Sigmoid(Activation):
         return self.output
 
     def backward(self, grad_output):
-        # print("Sigmoid")
-        # print('grad_output', grad_output.shape)
         grad_input = grad_output * (1 - self.output) * self.output
-        # print('grad_input', grad_input.shape)
-        # print("==========")
         return grad_input

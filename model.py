@@ -1,7 +1,7 @@
 from typing import List
 import numpy as np
 from layer import Layer
-from loss import binary_crossentropy
+from loss import BinaryCrossEntropy
 from optimizer import Adam
 
 
@@ -28,47 +28,55 @@ class Sequential(Model):
         self.loss = None
         self.optimizer = None
 
-    def add(self, layer):
-        if len(self.layers) > 0:
+    def add(self, layer: Layer):
+        if layer.input_shape is None:
             layer.set_input_shape(self.layers[-1].output_shape)
         self.layers.append(layer)
 
     def compile(self, loss, optimizer):
         if loss == 'binary_crossentropy':
-            self.loss = binary_crossentropy
+            self.loss = BinaryCrossEntropy()
         if optimizer == 'adam':
             self.optimizer = Adam()
 
     def predict(self, X):
-        for layer in self.layers:
-            X = layer.forward(X)
-        return X
+        total_predict = []
+        for value in X:
+            m_val = value.copy()
+            for layer in self.layers:
+                m_val = layer.forward(m_val)
+            total_predict.append(m_val[0])
+        return np.array(total_predict)
 
     def fit(self, X, y, epochs, batch_size, validation_data):
 
-        list_layer_trainable = self.layers[1:]
         for epoch in range(epochs):
+            loss_values = []
             for i in range(0, len(X), batch_size):
                 # Forward pass
-                m_X = np.array([X[i]])
-                for layer in list_layer_trainable:
-                    m_X = layer.forward(m_X)
+                iter_value = np.array([X[i]])
+                for layer in self.layers:
+                    iter_value = layer.forward(iter_value)
 
+                loss_value = self.loss.loss(y[i], iter_value)
+                loss_values.append(loss_value)
                 # Backward pass
-                gradients = [np.zeros(layer.weights.shape)
-                             for layer in reversed(list_layer_trainable)]
-                for gradient, layer in zip(gradients, reversed(list_layer_trainable)):
-                    gradient = layer.backward(gradient)
+                reversed_layers = self.layers[::-1]
 
-                # Update weights
-                for gradient, layer in zip(reversed(gradients), list_layer_trainable):
-                    layer.update(layer, self.optimizer, gradient)
+                grad_loss = self.loss.grad(y[i], iter_value)
+                print(grad_loss)
+                for layer in reversed_layers:
+                    grad_loss = layer.backward(grad_loss)
 
-    def accuracy(y, y_pred):
+            loss_values = np.array(loss_values).mean()
+            print(f'Epoch {epoch}: loss: {loss_values}')
+
+    def accuracy(self, y, y_pred):
         return np.mean(np.equal(y, np.round(y_pred)))
 
     def evaluate(self, X, y):
         y_pred = self.predict(X)
+        # print(y.shape)
         # loss = self.loss(y, y_pred)
         accuracy = self.accuracy(y, y_pred)
         return accuracy
