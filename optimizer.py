@@ -1,4 +1,7 @@
+from typing import List
 import numpy as np
+
+from layer import Layer
 
 
 class Optimizer:
@@ -9,7 +12,7 @@ class Optimizer:
     def __init__(self):
         pass
 
-    def update(self, layer, gradients):
+    def update(self, layer):
         """
         Update weights of layer.
         """
@@ -22,41 +25,33 @@ class Adam(Optimizer):
     """
 
     def __init__(self, learning_rate=0.1, beta1=0.9, beta2=0.999, epsilon=1e-07):
-        """
-        Initialize Adam optimizer.
-        """
         self.learning_rate = learning_rate
         self.beta1 = beta1
         self.beta2 = beta2
         self.epsilon = epsilon
-        self.m = None
-        self.v = None
 
-    def update(self, layer, gradient):
-        """
-        Update weights of layer.
-        """
+    def update(self, layers: List[Layer], iter_num: int):
+        for layer in layers:
+            layer.m_weights = (self.beta1/(1 - self.beta1**iter_num)) * \
+                layer.m_weights + \
+                ((1-self.beta1)/(1 - self.beta1**iter_num)) * layer.weights_grad
 
-        if self.m is None:
-            # self.m = [0] * len(layer.weights.T)
-            self.m = np.random.rand(len(layer.weights))
-            self.v = np.random.rand(len(layer.weights))
-            # self.v = [0] * len(layer.weights.T)
-        print(self.m)
-        for idx, grad in enumerate(gradient):
-            pass
-            # print(gradient.shape)
-            # print(self.m[0])
-            # print("="*10)
-            # for i in range(len(layer.weights)):
-            #     self.m[i] = self.beta1 * self.m[i] + \
-            #         (1 - self.beta1) * gradient[i]
-            #     self.v[i] = self.beta2 * self.v[i] + \
-            #         (1 - self.beta2) * gradient[i]**2
+            layer.v_weights = (self.beta2/(1 - self.beta2**iter_num)) * \
+                layer.v_weights + \
+                ((1-self.beta2)/(1 - self.beta2**iter_num)) * \
+                layer.weights_grad * layer.weights_grad
 
-            # m_hat = [self.m[i] / (1 - self.beta1)
-            #          for i in range(len(layer.weights))]
-            # v_hat = [self.v[i] / (1 - self.beta2)
-            #          for i in range(len(layer.weights))]
-            # layer.weights = np.array([layer.weights[i] - self.learning_rate * m_hat[i] /
-            #                           (v_hat[i]**0.5 + self.epsilon) for i in range(len(layer.weights))])
+            layer.weights -= self.learning_rate * \
+                (layer.m_weights/(layer.v_weights**0.5 + self.epsilon))
+
+            layer.m_bias = (self.beta1/(1 - self.beta1**iter_num)) * \
+                layer.m_bias + \
+                ((1-self.beta1)/(1 - self.beta1**iter_num)) * layer.bias_grad
+
+            layer.v_bias = (self.beta2/(1 - self.beta2**iter_num)) * \
+                layer.v_bias + \
+                ((1-self.beta2)/(1 - self.beta2**iter_num)) * \
+                layer.bias_grad * layer.bias_grad
+
+            layer.bias -= self.learning_rate * \
+                (layer.m_bias/(layer.v_bias**0.5 + self.epsilon))

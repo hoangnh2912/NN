@@ -1,6 +1,5 @@
 import numpy as np
 from activation import ReLU, Sigmoid
-from optimizer import Optimizer
 
 
 class Layer:
@@ -11,6 +10,12 @@ class Layer:
     inputs = None
     outputs = None
     grads = None
+    weights_grad = None
+    bias_grad = None
+    m_weights = None
+    v_weights = None
+    m_bias = None
+    v_bias = None
 
     def __init__(self):
         pass
@@ -19,9 +24,6 @@ class Layer:
         pass
 
     def backward(self, grads):
-        pass
-
-    def update(self, layer, optimizer, gradients):
         pass
 
     def set_input_shape(self, input_shape):
@@ -36,6 +38,12 @@ class Dense(Layer):
     inputs = None
     outputs = None
     grads = None
+    weights_grad = None
+    bias_grad = None
+    m_weights = None
+    v_weights = None
+    m_bias = None
+    v_bias = None
 
     def __init__(self, units, activation='relu', name=None, input_shape=None):
         self.name = name
@@ -60,13 +68,20 @@ class Dense(Layer):
 
     def backward(self, grads):
         self.grads = self.activation.backward(self.outputs) * grads
-        self.weights_grad = np.dot(self.inputs, self.grads)
+        self.weights_grad = np.dot(self.inputs.T, self.grads)
         self.bias_grad = np.sum(self.grads, axis=0, keepdims=True)
+
+        if self.m_weights is None:
+            # self.m_weights = np.random.rand(*self.weights_grad.shape)
+            # self.v_weights = np.random.rand(*self.weights_grad.shape)
+            # self.m_bias = np.random.rand(*self.bias_grad.shape)
+            # self.v_bias = np.random.rand(*self.bias_grad.shape)
+            self.m_weights = np.zeros(self.weights_grad.shape)
+            self.v_weights = np.zeros(self.weights_grad.shape)
+            self.m_bias = np.zeros(self.bias_grad.shape)
+            self.v_bias = np.zeros(self.bias_grad.shape)
         return np.dot(self.grads, self.weights.T)
 
     def init_weights(self, input_shape):
         self.weights = np.random.randn(input_shape[1], self.units)
         self.bias = np.random.randn(1, self.units)
-
-    def update(self, layer, optimizer: Optimizer, gradient):
-        optimizer.update(layer, gradient)

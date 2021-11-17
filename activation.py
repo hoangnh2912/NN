@@ -22,7 +22,8 @@ class ReLU(Activation):
 
     def backward(self, grad_output):
         relu_grad = grad_output.copy()
-        relu_grad[self.input > 0] = 0
+        relu_grad[self.input < 0] = 0
+        relu_grad[self.input > 0] = 1
         return relu_grad
 
 

@@ -48,35 +48,41 @@ class Sequential(Model):
             total_predict.append(m_val[0])
         return np.array(total_predict)
 
-    def fit(self, X, y, epochs, batch_size, validation_data):
+    def loss_(self, y, y_pred):
+        return self.loss.loss(y, y_pred).mean()
 
+    def fit(self, X, y, epochs, batch_size, validation_data):
+        iter_num = 0
+        X_val, Y_val = validation_data
         for epoch in range(epochs):
-            loss_values = []
+
             for i in range(0, len(X), batch_size):
                 # Forward pass
                 iter_value = np.array([X[i]])
                 for layer in self.layers:
                     iter_value = layer.forward(iter_value)
 
-                loss_value = self.loss.loss(y[i], iter_value)
-                loss_values.append(loss_value)
                 # Backward pass
                 reversed_layers = self.layers[::-1]
 
                 grad_loss = self.loss.grad(y[i], iter_value)
-                print(grad_loss)
                 for layer in reversed_layers:
                     grad_loss = layer.backward(grad_loss)
+                # update weights
+                iter_num += 40
+                self.optimizer.update(reversed_layers, iter_num)
+            # loss_trains = np.array(loss_trains).mean()
+            acc, loss = self.evaluate(X, y)
 
-            loss_values = np.array(loss_values).mean()
-            print(f'Epoch {epoch}: loss: {loss_values}')
+            acc_val, loss_val = self.evaluate(X_val, Y_val)
+            print(
+                f'Epoch {epoch}: loss: {np.round(loss,3)}, acc: {np.round(acc,3)}, acc_val: {np.round(acc_val,3)}, loss_val: {np.round(loss_val,3)}')
 
     def accuracy(self, y, y_pred):
         return np.mean(np.equal(y, np.round(y_pred)))
 
     def evaluate(self, X, y):
         y_pred = self.predict(X)
-        # print(y.shape)
-        # loss = self.loss(y, y_pred)
+        loss = self.loss_(y, y_pred)
         accuracy = self.accuracy(y, y_pred)
-        return accuracy
+        return accuracy, loss
