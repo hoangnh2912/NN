@@ -93,13 +93,25 @@ Using a neural network for traning in the train.csv data, predict whether the ot
         \end{itemize}
     \item Build a Multilayer perceptron (MLP) neural network with the following hyperparameters:
         \begin{itemize}
+            \item Layer formula:
+            \[
+            f(x) = Wx + \textit{bias} 
+            \]
             \item \textbf{Number of input layers} is \textbf{7} from the input shape of the dataset after processed.
             \item \textbf{Number of hidden layers} is \textbf{3} and \textbf{number of neurons} in each layer is \textbf{8} and activation function is \textbf{ReLU}.
+            \item Relu activation function:
+            \[
+                ReLU(x) = \max(0,x)                
+            \]
             \item \textbf{Number of output layers} is \textbf{1} for classification is survival or not with \textbf{Sigmoid} activation function.
+            \item Sigmoid activation function:
+            \[
+                Sigmoid(x) = \frac{1}{1 + e^{-x}}           
+            \]
             \begin{center}
                 \includegraphics[width=0.235\textwidth]{nn.png}
             \end{center}
-            \item We use \textbf{Adam Optimization Algorithm} for update network weights iterative based on training data.
+            \item We use \textbf{Adam Optimization Algorithm} for update network weights iterative based on training data with \textbf{backpropagation algorithm}.
             \begin{gather}
                 g_n \gets \nabla f(\theta_{n-1})
                 \\
